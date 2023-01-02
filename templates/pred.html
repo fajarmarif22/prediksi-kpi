@@ -1,193 +1,172 @@
-{% extends "main.html" %}
-{% block content %}
-    <div class="container belakang">
-        <form action="{{url_for('predict')}}" method="post">
-        <div class="row bata">
-            <h5 class="gt">Aplikasi Prediksi User Experience Telco :</h5>
-            <div class="col-4">
-                <div class="huruf">RSSI</div>
-                <div class="form-floating mb-2 huruf">
-                    <input class="form-control" name="RSSI" type="text" placeholder="RSSI" required="required">
-                    <label for="RSSI">-113 s/d -118</label>
-                </div>
-                
-                <div class="huruf"> Jumlah User</div>
-                <div class="form-floating mb-2 huruf">
-                    <input class="form-control" name="rrc_connected_users" type="text" placeholder="rrc_connected_users" required="required">
-                    <label for="rrc_connected_users">1 s/d 60</label>
-                </div>
-
-            </div>
-                <div class="col-4">
-                    <div class="huruf"> Latency Jaringan</div>
-                    <div class="form-floating mb-2 huruf">
-                        <input class="form-control" name="dl_uu_latency" placeholder="dl_uu_latency" required="required">
-                        <label for="dl_uu_latency">3 s/d 7</label>
-                    </div>
-    
-                    <div class="huruf"> SINR</div>
-                    <div class="form-floating mb-4 huruf">
-                        <input class="form-control" type="text" name="sinr_pusch" placeholder="sinr_pusch" required="required">
-                        <label for="sinr_pusch">10 s/d 13</label>
-                    </div>
-                    <br>
-                    <div class="d-grid gap-2 col-10 mx-auto mb-2">
-                        <button class="btn btn-dark" type="submit">PREDICT</button>
-                    </div>
-                </div>
-                
-            <div class="col-3 hasil">
-                <div class="card">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h4>Hasil Prediksi</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="card">
-                                KAPASITAS SITE TERPAKAI<br> <h3>{{util}} %</h3>
-                            </div>
-                            <br>
-                            <div class="card">
-                                KECEPATAN DATA USER<br> <h3>{{ th }} Mbps</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{% extends "main.html" %} {% block content %}
+<div class="container belakang">
+  <form action="{{url_for('predict')}}" method="post">
+    <div class="row bata">
+      <h5 class="gt">Aplikasi Prediksi User Experience Telco :</h5>
+      <div class="col-4">
+        <div class="huruf">Utilization</div>
+        <div class="form-floating mb-2 huruf">
+          <input
+            class="form-control"
+            name="Utilization"
+            placeholder="Utilization"
+            required="required"
+          />
+          <label for="Utilization">0 s/d 50</label>
         </div>
-    </form>
-</div>
 
-<div class="container text-center bata ">
-    <div class="card tinggi ya">
-        <h4 class="jarak lk">Data yang dimasukkan</h4>
-        <div class="row row-cols-4">
-            <div class="col ">
-              <div class="card text-center">
-                  <div class="card-body">
-                      <h4 class="card-title">
-                          {{ rssi }} dBm
-                      </h4>
-                      <p class="hj">
-                          Daya Sinyal Yang Diterima User
-                      </p>
-                  </div>
+        <div class="huruf">cqi</div>
+        <div class="form-floating mb-2 huruf">
+          <input
+            class="form-control"
+            name="cqi"
+            type="text"
+            placeholder="cqi"
+            required="required"
+          />
+          <label for="cqi">9 s/d 12</label>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="huruf">rssi</div>
+        <div class="form-floating mb-2 huruf">
+          <input
+            class="form-control"
+            name="rssi"
+            placeholder="rssi"
+            required="required"
+          />
+          <label for="rssi">-118 s/d -113</label>
+        </div>
+        <br />
+        <div class="d-grid gap-2 col-10 mx-auto mb-2">
+          <button class="btn btn-dark" type="submit">PREDICT</button>
+        </div>
+      </div>
+
+      <div class="col-3 hasil">
+        <div class="card">
+          <div class="card text-center">
+            <div class="card-header">
+              <h4>Hasil Prediksi</h4>
+            </div>
+            <div class="card-body">
+              <br />
+              <div class="card">
+                KECEPATAN DATA USER<br />
+                <h3>{{ th }} Mbps</h3>
               </div>
             </div>
-      
-            <div class="col">
-              <div class="card text-center">
-                  <div class="card-body">
-                      <h4 class="card-title">
-                          {{ rrc_connected_users }} unit
-                      </h4>
-                      <p class="hj">
-                          Jumlah User Yang Terkoneksi
-                      </p>
-                  </div>
-              </div>
-            </div>
-      
-            <div class="col">
-              <div class="card text-center ">
-                  <div class="card-body">
-                      <h4 class="card-title">
-                          {{ dl_uu_latency }} ms
-                      </h4>
-                      <p class="hj">
-                          Latency Pada Jaringan
-                      </p>
-                  </div>
-              </div>
-            </div>
-      
-            <div class="col">
-              <div class="card text-center">
-                  <div class="card-body">
-                      <h4 class="card-title">
-                          {{ sinr_pusch }} dB
-                      </h4>
-                      <p class="hj">
-                          Kualitas Sinyal User
-                      </p>
-                  </div>
-              </div>
-            </div>
-          
+          </div>
+        </div>
+      </div>
     </div>
+  </form>
 </div>
+
+<div class="container text-center bata">
+  <div class="card tinggi ya">
+    <h4 class="jarak lk">Data yang dimasukkan</h4>
+    <div class="row row-cols-4">
+      <div class="col">
+        <div class="card text-center">
+          <div class="card-body">
+            <h4 class="card-title">{{ dl_prb_utilization }} dBm</h4>
+            <p class="hj">Daya Sinyal Yang Diterima User</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card text-center">
+          <div class="card-body">
+            <h4 class="card-title">{{ cqi_avg }} unit</h4>
+            <p class="hj">Jumlah User Yang Terkoneksi</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card text-center">
+          <div class="card-body">
+            <h4 class="card-title">{{ rssi }} ms</h4>
+            <p class="hj">Latency Pada Jaringan</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-
-
-
-  <style lang="scss" scoped>
-
-    .bata {
+<style lang="scss" scoped>
+  .bata {
     position: relative;
     padding-top: 2%;
     border-style: hidden;
     padding-bottom: 2vh;
-    
-    
   }
   .hasil {
     margin-left: 30px;
   }
-    .huruf {
-        font-size: 2vh;
-        font-weight: bold;
+  .huruf {
+    font-size: 2vh;
+    font-weight: bold;
   }
-    .belakang {
-        box-shadow: 0px 0px 10px 0px rgba(11, 44, 150, 0.358);
-    }
+  .belakang {
+    box-shadow: 0px 0px 10px 0px rgba(11, 44, 150, 0.358);
+  }
 
-    .nano {
-        height: 70px ;
-    }
-    .tinggi{
-        height: 13em;
-        padding-left: 2%;
-        padding-right: 2%;
-        padding-bottom: 20px;
-    }
-    .tabel {
-        height: 135px;
-        width: 130px;
-        
-        /* background-color: rgba(24, 25, 26, 0.2); */
-        background-image: linear-gradient(rgba(233, 225, 225, 0.1), rgba(140, 169, 201, 0.116));
-    }
-    .jarak {
-        padding-bottom: 10px;
-    }
+  .nano {
+    height: 70px;
+  }
+  .tinggi {
+    height: 13em;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 20px;
+  }
+  .tabel {
+    height: 135px;
+    width: 130px;
 
-    .bl{
-        background-image: linear-gradient(rgba(233, 225, 225, 0.11), rgba(140, 169, 201, 0.137));
-    }
+    /* background-color: rgba(24, 25, 26, 0.2); */
+    background-image: linear-gradient(
+      rgba(233, 225, 225, 0.1),
+      rgba(140, 169, 201, 0.116)
+    );
+  }
+  .jarak {
+    padding-bottom: 10px;
+  }
 
-    .gt {
-        padding-bottom: 10px;
-    }
-    .ya{
-            background-color: rgba(216, 213, 213, 0.122);
-        }
-    .hj {
-        font-weight: bold;
-        font-family: 'Gentium Book Basic', serif;
-        padding-top: 5px;
-    }
+  .bl {
+    background-image: linear-gradient(
+      rgba(233, 225, 225, 0.11),
+      rgba(140, 169, 201, 0.137)
+    );
+  }
 
-    .lk {
-        font-weight: bold;
-        font-family: 'Gentium Book Basic', serif;
-        font-size: 25px;
-        padding-top: 10px;
-    }
+  .gt {
+    padding-bottom: 10px;
+  }
+  .ya {
+    background-color: rgba(216, 213, 213, 0.122);
+  }
+  .hj {
+    font-weight: bold;
+    font-family: 'Gentium Book Basic', serif;
+    padding-top: 5px;
+  }
 
-    .vy {
-        padding-left: 30px;
-    }
-  </style>
+  .lk {
+    font-weight: bold;
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 25px;
+    padding-top: 10px;
+  }
+
+  .vy {
+    padding-left: 30px;
+  }
+</style>
 {% endblock %}
-
